@@ -1,11 +1,5 @@
-logDebug("IN ASA;Building!Licenses!*!Renewal");
+if(matches(currentUserID,"ADMIN"))showDebug = 3;
 
-//include("INCLUDES_LICENSES");
-//
-//logDebug("After INCLUDES_LICENSES");
-//
-//prepareAppForRenewal();
-//
-//logDebug("After prepareAppForRenewal");
+logDebug("IN ASA;Building!Licenses!*!Renewal");
 
 aa.runScript("APPLICATIONSUBMITAFTER4RENEW");
