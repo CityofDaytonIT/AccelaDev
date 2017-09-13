@@ -1,2 +1,1 @@
-include("INCLUDES_LICENSES");
-convertRenewalToReal();
+aa.runScript("CONVERTTOREALCAPAFTER4RENEW");
