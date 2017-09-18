@@ -11,7 +11,7 @@ aa.env.setValue("expirationASI","Permit Expiration Date")
 ***********************/
 /*------------------------------------------------------------------------------------------------------/
 | Program: Batch Expiration.js  Trigger: Batch
-| Client: South Metro Fire
+| Client: Dayton OH
 |
 | Frequency: Annually on January 31 (31 days after to December 31)
 |

@@ -10,7 +10,7 @@ aa.env.setValue("newStatus","About to Expire")
 ***********************/
 /*------------------------------------------------------------------------------------------------------/
 | Program: Batch Expiration.js  Trigger: Batch
-| Client: City of Dayton
+| Client: Dayton OH
 |
 | Frequency: Annually on November 16 (45 days prior to December 31)
 |
@@ -33,16 +33,6 @@ useAppSpecificGroupName = false;
 /*------------------------------------------------------------------------------------------------------/
 | BEGIN Includes
 /------------------------------------------------------------------------------------------------------*/
-//SCRIPT_VERSION = 2.0
-//
-//emseBiz = aa.proxyInvoker.newInstance("com.accela.aa.emse.emse.EMSEBusiness").getOutput()
-//servProvCode = aa.getServiceProviderCode()
-//
-//eval(""+emseBiz.getScriptByPK(servProvCode,"INCLUDES_ACCELA_FUNCTIONS","ADMIN").getScriptText())
-//
-//eval(""+emseBiz.getScriptByPK(servProvCode,"INCLUDES_BATCH","ADMIN").getScriptText())
-//eval(""+emseBiz.getScriptByPK(servProvCode,"INCLUDES_CUSTOM","ADMIN").getScriptText())
-
 var SCRIPT_VERSION = 3.0
 var useCustomScriptFile = true;  // if true, use Events->Custom Script, else use Events->Scripts->INCLUDES_CUSTOM
 var useSA = false;
