@@ -28,7 +28,7 @@ emailText = "";
 maxSeconds = 4.5 * 60;		// number of seconds allowed for batch processing, usually < 5*60
 message = "";
 br = "<br>";
-debug = ""
+debug = "";
 /*------------------------------------------------------------------------------------------------------/
 | BEGIN Includes
 /------------------------------------------------------------------------------------------------------*/
@@ -38,6 +38,7 @@ emseBiz = aa.proxyInvoker.newInstance("com.accela.aa.emse.emse.EMSEBusiness").ge
 servProvCode = aa.getServiceProviderCode()
 
 eval(""+emseBiz.getScriptByPK(servProvCode,"INCLUDES_ACCELA_FUNCTIONS","ADMIN").getScriptText())
+
 eval(""+emseBiz.getScriptByPK(servProvCode,"INCLUDES_BATCH","ADMIN").getScriptText())
 eval(""+emseBiz.getScriptByPK(servProvCode,"INCLUDES_CUSTOM","ADMIN").getScriptText())
 
