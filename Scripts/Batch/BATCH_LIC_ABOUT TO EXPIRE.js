@@ -4,7 +4,7 @@ aa.env.setValue("appGroup","Building");
 aa.env.setValue("appTypeType","Licenses");
 aa.env.setValue("appSubtype","*");
 aa.env.setValue("appCategory","License");
-aa.env.setValue("appStatus","Active")
+aa.env.setValue("appStatus","Issued")
 aa.env.setValue("newStatus","About to Expire")
 
 ***********************/
@@ -189,7 +189,8 @@ function mainProcess() {
 		altId = tmpCapObj.getSuccess() ? tmpCapObj.getOutput().getCapModel().getAltID() : null
 		
 		logDebug(altId)
-		updateAppStatus(newStatus,"Set by Script")	
+		updateAppStatus(newStatus,"Set by Script"),
+		licEditExpInfo("About To Expire",null);
 	}
 	logDebug("Batch Results Summary")
 }
