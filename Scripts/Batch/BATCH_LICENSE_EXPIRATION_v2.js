@@ -190,6 +190,7 @@ function mainProcess(){
 	var capFilterType = 0;
 	var capFilterStatus = 0;
 	var capCount = 0;
+	var updateRec = false;
 
 	var expResult = aa.expiration.getLicensesByDate(expStatus, fromDate, toDate);
 	
@@ -209,8 +210,20 @@ function mainProcess(){
 						if(matches(appSubtype,"*",thisCapTypeArray[2])){
 							if(matches(appCategory,"*",thisCapTypeArray[3])){
 								var thisCapStatus = thisCap.getCapStatus();
-								if(matches(appStatus,thisCapStatus) || (matches(appStatus,"",null) && !exists(thisCapStatus,skipAppStatusArray))){
+								
+								if(matches(appStatus,thisCapStatus)){
+									updateRec = true;
+//									var stsQual = "cap";
+								}
+								if(matches(appStatus,"",null) && !exists(thisCapStatus, skipAppStatusArray)){
+									updateRec = true;
+//									var stsQual = "skip";
+								}
+								
+								if(updateRec){
 									logDebug(thisCap.getAltID()+": "+thisCapType);
+//									if(stsQual == "cap") logDebug("Cap Status Qualified");
+//									if(stsQual == "skip") logDebug("Skip Status Qualified");
 									
 									if(newExpStatus.length > 0 && newAppStatus.length == 0){// update expiration status only
 										theseExp[i].setExpStatus(newExpStatus);
