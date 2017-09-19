@@ -99,9 +99,6 @@ aa.env.setValue("appCategory", "License");
 
 aa.env.setValue("skipAppStatus","");
 
-aa.env.setValue("fromDate","12/31/2017");
-aa.env.setValue("toDate","12/31/2017");
-
 aa.env.setValue("lookAheadDays",45);
 aa.env.setValue("daySpan",0);
 
@@ -112,6 +109,9 @@ aa.env.setValue("expirationStatus","Active");
 aa.env.setValue("newExpirationStatus","About To Expire");
 
 aa.env.setValue("emailAddress","chris.godwin@woolpert.com");
+
+aa.env.setValue("fromDate","12/31/2017");
+aa.env.setValue("toDate","12/31/2017");
 
 */
  
@@ -209,7 +209,7 @@ function mainProcess(){
 						if(matches(appSubtype,"*",thisCapTypeArray[2])){
 							if(matches(appCategory,"*",thisCapTypeArray[3])){
 								var thisCapStatus = thisCap.getCapStatus();
-								if(matches(appStatus,"",null,thisCapStatus)){
+								if(matches(appStatus,thisCapStatus) || (matches(appStatus,"",null) && !exists(thisCapStatus,skipAppStatusArray))){
 									logDebug(thisCap.getAltID()+": "+thisCapType);
 									
 									if(newExpStatus.length > 0 && newAppStatus.length == 0){// update expiration status only
