@@ -349,11 +349,7 @@ function createAccelaCases(serviceRequest) {
     newAddressModel.setStreetSuffix(serviceRequest.Suffix);
     newAddressModel.setCity(serviceRequest.City);
     newAddressModel.setState(serviceRequest.State);
-    try{
-		newAddressModel.setZip(serviceRequest.Zip);
-	}catch(err){
-		aa.print("Exception encountered calling newAddressModel.setZip(): " + err);
-	}
+    newAddressModel.setZip(serviceRequest.Zip);//CG - added 10.10.2017
     newAddressModel.setRefAddressId(serviceRequest.ReferenceAddressId);
 
 
