@@ -17,7 +17,6 @@ function updateLicenseFromRenewal() {
 	
 	//get ASI from renewal
 	var slhn = AInfo["State License Holder's Name"];
-	var soocln = AInfo["State of Ohio Contractor's License Number"];
 	var sooled = AInfo["State of Ohio License Expiration Date"];
 	var be = AInfo["Bond Expiration"];
 	var coled = AInfo["Certificate of Liability Expiration Date"];
@@ -31,6 +30,9 @@ function updateLicenseFromRenewal() {
 	for (x in gm) removeASITable(gm[x], parentLicenseCAPID);
 	copyAppSpecific(parentLicenseCAPID); 
 	copyASITables(capId,parentLicenseCAPID); 
+	
+	removeCapContacts(parentLicenseCAPID);
+	
 	copyContacts(capId,parentLicenseCAPID);  
 	
 	saveId = capId; 
@@ -49,14 +51,14 @@ function updateLicenseFromRenewal() {
 		lic.setLicenseExpirationDate(aa.date.parseDate(newExpireDate))
 		lic.setLicenseLastRenewalDate(aa.date.getCurrentDate())	
 		
-		if(!matches(typeof(slhn),"undefined",null)){//State License Holder's Name
-			logDebug("slhn: "+slhn);
+//		if(!matches(typeof(slhn),"undefined",null)){//State License Holder's Name
+//			logDebug("slhn: "+slhn);
 //			lic.set(slhn);
-		}
-		if(!matches(typeof(soocln),"undefined",null)){//State of Ohio Contractor's License Number
-			logDebug("soocln: "+soocln);
-			lic.setBusinessLicense(soocln);
-		}
+//		}
+//		if(!matches(typeof(soocln),"undefined",null)){//State of Ohio Contractor's License Number
+//			logDebug("soocln: "+soocln);
+//			lic.setBusinessLicense(soocln);
+//		}
 		if(!matches(typeof(sooled),"undefined",null)){//State of Ohio License Expiration Date
 			logDebug("sooled: "+sooled);
 			lic.setBusinessLicExpDate(aa.date.parseDate(sooled));
@@ -70,7 +72,8 @@ function updateLicenseFromRenewal() {
 			lic.setWcExpDate(aa.date.parseDate(coled));
 		}
 		
-		aa.licenseScript.editRefLicenseProf(lic);
+//		aa.licenseScript.editRefLicenseProf(lic);
+		modifyRefLPAndSubTran(parentCapId, lic);
 	}else{
 		logDebug("Could not get LP");
 	}
