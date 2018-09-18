@@ -51,7 +51,25 @@ function issueLicense() {
 		saveId = capId;
 		capId = newLicId;
 		AInfo["Business License #"] = newLicIdString;
-		createRefLicProf(newLicIdString,"Contractor","License Holder");
+		
+		var conLicType = "";
+		if(matches(appTypeArray[2],"Apprentice Plumbers")){
+			conLicType = "Apprentice Plumber";
+		}else if(matches(appTypeArray[2],"Electrical Contractor")){
+			conLicType = "Electrical";
+		}else if(matches(appTypeArray[2],"HVAC")){
+			conLicType = "Mechanical";
+		}else if(matches(appTypeArray[2],"Journeyman Plumbers")){
+			conLicType = "Journeyman Plumber";
+		}else if(matches(appTypeArray[2],"Pipe-Laying")){
+			conLicType = "Pipe Laying Contractor";
+		}else if(matches(appTypeArray[2],"Plumbing")){
+			conLicType = "Plumbing";
+		}else{
+			logDebug("Could not match contractor type")
+		}
+		
+		createRefLicProf(newLicIdString,conLicType,"License Holder");
 		capId = saveId;
 		refLP = getRefLicenseProf(newLicIdString);
 		refLP.setLicenseExpirationDate(aa.date.parseDate(jsDateToASIDate(jsDate)));

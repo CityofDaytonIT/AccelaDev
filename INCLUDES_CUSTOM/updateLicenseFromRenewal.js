@@ -14,6 +14,14 @@ function updateLicenseFromRenewal() {
 			jsDate.setFullYear(jsDate.getFullYear()+2)
 			break;
 	}
+	
+	//get ASI from renewal
+	var slhn = AInfo["State License Holder's Name"];
+	var soocln = AInfo["State of Ohio Contractor's License Number"];
+	var sooled = AInfo["State of Ohio License Expiration Date"];
+	var be = AInfo["Bond Expiration"];
+	var coled = AInfo["Certificate of Liability Expiration Date"];
+//	var dred = AInfo["Dayton Registration Expiration Date"];
 
 	// New Expire date	
 	newExpireDate = jsDateToASIDate(jsDate)
@@ -40,6 +48,30 @@ function updateLicenseFromRenewal() {
 	if (lic != null){
 		lic.setLicenseExpirationDate(aa.date.parseDate(newExpireDate))
 		lic.setLicenseLastRenewalDate(aa.date.getCurrentDate())	
+		
+		if(!matches(typeof(slhn),"undefined",null)){//State License Holder's Name
+			logDebug("slhn: "+slhn);
+//			lic.set(slhn);
+		}
+		if(!matches(typeof(soocln),"undefined",null)){//State of Ohio Contractor's License Number
+			logDebug("soocln: "+soocln);
+			lic.setBusinessLicense(soocln);
+		}
+		if(!matches(typeof(sooled),"undefined",null)){//State of Ohio License Expiration Date
+			logDebug("sooled: "+sooled);
+			lic.setBusinessLicExpDate(aa.date.parseDate(sooled));
+		}
+		if(!matches(typeof(be),"undefined",null)){//Bond Expiration
+			logDebug("be: "+be);
+			lic.setInsuranceExpDate(aa.date.parseDate(be));
+		}
+		if(!matches(typeof(coled),"undefined",null)){//Certificate of Liability Expiration Date
+			logDebug("coled: "+coled);
+			lic.setWcExpDate(aa.date.parseDate(coled));
+		}
+		
 		aa.licenseScript.editRefLicenseProf(lic);
+	}else{
+		logDebug("Could not get LP");
 	}
 }
