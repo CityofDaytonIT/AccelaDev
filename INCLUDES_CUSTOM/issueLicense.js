@@ -1,4 +1,12 @@
 function issueLicense() {
+	
+	//get ASI from Application
+	var slhn = AInfo["State License Holder's Name"];
+	var soocln = AInfo["State of Ohio Contractor's License Number"];
+	var sooled = AInfo["State of Ohio License Expiration Date"];
+	var be = AInfo["Bond Expiration"];
+	var coled = AInfo["Certificate of Liability Expiration Date"];
+	
 	//SET CONTACT STATE
 	var capContactResult = aa.people.getCapContactByCapID(capId);
 	if(capContactResult.getSuccess()){
@@ -50,7 +58,7 @@ function issueLicense() {
 		lic.setExpiration(jsDateToASIDate(jsDate));
 		saveId = capId;
 		capId = newLicId;
-		AInfo["Business License #"] = newLicIdString;
+//		AInfo["Business License #"] = newLicIdString;
 		
 		var conLicType = "";
 		if(matches(appTypeArray[2],"Apprentice Plumbers")){
@@ -75,6 +83,28 @@ function issueLicense() {
 		refLP.setLicenseExpirationDate(aa.date.parseDate(jsDateToASIDate(jsDate)));
 		refLP.setLicenseIssueDate(aa.date.getCurrentDate());
 		refLP.setBusinessName2("Issued");
+		
+//		if(!matches(typeof(slhn),"undefined",null)){//State License Holder's Name
+//			logDebug("slhn: "+slhn);
+//			refLP.set(slhn);
+//		}
+//		if(!matches(typeof(soocln),"undefined",null)){//State of Ohio Contractor's License Number
+//			logDebug("soocln: "+soocln);
+//			refLP.setBusinessLicense(soocln);
+//		}
+		if(!matches(typeof(sooled),"undefined",null)){//State of Ohio License Expiration Date
+			logDebug("sooled: "+sooled);
+			refLP.setBusinessLicExpDate(aa.date.parseDate(sooled));
+		}
+		if(!matches(typeof(be),"undefined",null)){//Bond Expiration
+			logDebug("be: "+be);
+			refLP.setInsuranceExpDate(aa.date.parseDate(be));
+		}
+		if(!matches(typeof(coled),"undefined",null)){//Certificate of Liability Expiration Date
+			logDebug("coled: "+coled);
+			refLP.setWcExpDate(aa.date.parseDate(coled));
+		}
+		
 		aa.licenseScript.editRefLicenseProf(refLP);
 		aa.licenseScript.associateLpWithCap(newLicId,refLP);
 		
